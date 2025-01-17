@@ -22,22 +22,22 @@ Enter answers to the questions just below the >Answer: prompt.
 
 1. What are your previous experiences with data analytics, R, and Git? Include both formal and informal training.
 
-> Answer: 
+> Answer: I used R for Betsy Albright's Applied Statistical Modeling course. In Martin Doyle's Hydrology class, I used R to conduct hydrological analysis. I have no previous experience with Git and not much relevent experience with data analytics.
 
 2. Are there any components of the course about which you feel confident?
 
-> Answer: 
+> Answer: I am excited to learn! I feel confident about the basics of R for statistical modeling, but I am looking forward to learning more of the 'why' behind the language and certain elements within R.
 
 3. Are there any components of the course about which you feel apprehensive?
 
-> Answer: 
+> Answer: I believe there will be challenging aspects to the course, and I am sometimes worried about keeping up, but I really appreciate the encouraging classroom environment so far. The classroom environment seems positive and approachable, which makes me feel confident and excited to learn. The system which allows me to ask for help from a TA without halting the class seems very helpful.
 
 
 ## 2) GitHub
 
 Provide a link below to your forked course repository in GitHub. Make sure you have pulled all recent changes from the course repository and that you have updated your course README file, committed those changes, and pushed them to your GitHub account. 
 
-> Answer: 
+> Answer: https://github.com/cammiemoore/EDE_Spring2025
 
 ## 3) Knitting
 When you have completed this document, click the `knit` button.This should produce a PDF copy of your markdown document. Submit this PDF to Canvas 
