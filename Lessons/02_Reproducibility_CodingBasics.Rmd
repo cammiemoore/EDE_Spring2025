@@ -157,21 +157,23 @@ The basic form of a function is `functionname()`, and the packages we will use i
 Writing a function is like writing a recipe. Your function will need a recipe name (functionname). Your recipe ingredients will go inside the parentheses. The recipe steps and end product go inside the curly brackets.
 
 ```{r}
-functionname <- function(){
+functionname <- function(){ 
   
-}
+} #inside parenthesis is inputs, inside brackets is what you need to do with ingredients 
 ```
+
+A function requires inputs, has a command, and creates outputs.
 
 A single ingredient recipe:
 
 ```{r}
-# Write the recipe
+# Write the recipe, this is multiplying the input by 2
 recipe1 <- function(x){
   mix <- x*2
   return(mix)
 }
 
-# Bake the recipe
+# Bake the recipe, assigning the recipe to a different object, recipe 
 simplemeal <- recipe1(5)
 
 # Serve the recipe
@@ -181,10 +183,10 @@ simplemeal
 Two single ingredient recipes, baked at the same time:
 
 ```{r}
-recipe2 <- function(x){
+recipe2 <- function(x){ #single ingredient/input because just x
   mix1 <- x*2
   mix2 <- x/2
-  return(list(mix1 = mix1, #comma indicates we continue onto the next line
+  return(list(mix1 = mix1, #comma indicates we continue onto the next line, list is like a vector with more than one object
               mix2 = mix2))
 }
 
@@ -210,11 +212,11 @@ doublecomplexmeal$mix1
 Make a recipe based on the ingredients you have
 
 ```{r}
-recipe4 <- function(x) {
-  if(x < 3) {
+recipe4 <- function(x) { # single input function
+  if(x < 3) { #if x is less than 3
     x*2
   } 
-  else {
+  else { # else means then x is greater than or equal to 3
     x/2
   }
 }
@@ -223,7 +225,7 @@ recipe5 <- function(x) {
   if(x < 3) {
     x*2
   } 
-  else if (x > 3) {
+  else if (x > 3) { #if statements inside the function environment
     x/2
   }
   else {
@@ -235,10 +237,8 @@ meal2 <- recipe4(2); meal2
 meal3 <- recipe5(3); meal3
 
 recipe6 <- function(x){
-  ifelse(x<3, x*2, x/2) #log_exp, if TRUE, if FALSE
-  
-}
-
+  ifelse(x<3, x*2, x/2) #logical exprssion, if TRUE, if FALSE
+  }
 meal4 <- recipe6(4); meal4
 meal5 <- recipe6(2); meal5
 ```
