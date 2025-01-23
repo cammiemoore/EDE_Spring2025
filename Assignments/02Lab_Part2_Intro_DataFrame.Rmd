@@ -69,7 +69,7 @@ How could you add columns to *df_car_speed*?
 car_dist <- cars$dist
 
 #Option 1
-df <- cbind(df_car_speed,car_dist)  #similarly rows could be added using rbind()
+df <- cbind(df_car_speed,car_dist)  #similarly rows could be added using rbind(), cbind = column bind
 class(df)
 df
 
