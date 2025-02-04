@@ -3,6 +3,8 @@ title: "Lab 3b - Workspaces, Dates, and Factors"
 author: "Environmental Data Analytics | John Fay and Luana Lima "
 date: "spring 2025"
 output: pdf_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 ## Objectives
@@ -69,6 +71,8 @@ filenames <- dir(here('Data','Raw'),pattern = ("*.csv"))
 print(filenames)
 ```
 
+
+
 ### Exercise: the here package in action
 
 1.    Use the `here` package with `read.csv()` to read the `NTL-LTER_Lake_ChemistryPhysics_Raw.csv` file into a dataframe.
@@ -81,6 +85,10 @@ print(filenames)
 
 
 # 2.
+EPAair_03 <- read.csv(
+  file = here('Data','Raw','NTL-LTER_Lake_ChemistryPhysics_Raw.csv'),
+  stringsAsFactors = T
+)
 
 
 ```
@@ -101,7 +109,7 @@ Remember formatting of dates in R:
 # An example is provided to get you started.
 # (code must be uncommented)
 today <- Sys.Date()
-format(today, format = "%B")
+format(today, format = "%B") #full name of month %b = shortened name of month
 #format(today, format = "")
 #format(today, format = "")
 #format(today, format = "")
@@ -132,8 +140,8 @@ date_obj_today
 
 #Ex_3 - on your own...
 str_juneteenth <- "19 June 1865"
-#date_juneteenth <- ()
-#date_juneteenth
+date_juneteenth <- dmy(str_juneteenth)
+date_juneteenth
 ```
 ### The century issue
 
@@ -276,7 +284,7 @@ levels(sites$dow)
 #Plot again
 ggplot(sites,aes(x=dow)) +
   geom_bar() + 
-  scale_x_discrete(drop=FALSE)
+  scale_x_discrete(drop=FALSE) # shows all unique data even if there is no data
 
 ```
 
@@ -330,8 +338,7 @@ usgs_flow_data <- read.csv(
   colClasses = (c('site_no'='factor'))
 )
 #Convert date-time field to date
-usgs_flow_data$datetime = mdy(usgs_flow_data$datetime)
-
+usgs_flow_data$datetime = fast_strptime(usgs_flow_data$datetime,"%m/%d/%Y",cutoff_2000=24L)
 #Create date column
 usgs_flow_data$month <- month(usgs_flow_data$datetime)
 
