@@ -10,6 +10,30 @@ editor_options:
   toc: true
 ---
 
+## Editing
+
+### Subheader
+
+> This is a block quote
+
+1.  step1
+2.  step2
+3.  step3
+4.  step4
+
+-   bullet
+-   bullet 2
+    -   subbullet
+
+| First Header | Second Header |
+|--------------|---------------|
+| Content Cell | Content Cell  |
+| cool         | Content Cell  |
+
+hyperlink: [mylink](www.google.com)
+
+images: ![myimage](img/rmarkdownflow.png)
+
 ## Set up the coding environment
 
 ```{r setup}
@@ -45,5 +69,13 @@ nutrient_data_tn <- nutrient_data %>%
     sd_tn_ug = sd(tn_ug)
   )
 ```
+\newpage
 
 ## Report the summary
+
+```{r table, echo=FALSE}
+knitr::kable(nutrient_data_tn, caption = "summary of total nitrogen (ug)")
+```
+
+
+
