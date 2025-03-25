@@ -170,7 +170,7 @@ str(gage.heights.df)
 
 #16. Join the flow data to our NWIS gage location spatial dataframe
 
-gage.joined.sf <- right_join(gage.sf, gage.heights.df, by = "station_nm")
+gage.joined.sf <- inner_join(gage.sf, gage.heights.df, by = "station_nm")
 
 #17. Show the column names in the resulting spatial dataframe
 
@@ -256,19 +256,39 @@ saunders.utm <- nebraska.sf.utm|>
   filter(NAME == "Saunders")
 
 #23 Spatially select gages within the selected county
-saunders.gage.utm <- saunders.utm |>  
-  st_filter(gage.sf.utm, .predicate = st_intersects)
+saunders.gage.utm <- st_filter(
+  x = gage.sf.utm,
+  y = saunders.utm)
 mapview(saunders.gage.utm)
 
 #24 Spatially select gages within 15 k of the selected county
 saunders.buffer.utm <- st_buffer(saunders.utm, dist = 15000) #dist is in meters, so 1500 m = 15km
-saunders.15gage.utm <- saunders.buffer.utm |>
-  st_filter(gage.sf.utm, .predicate = st_intersects)
+saunders.15gage.utm <- st_filter(
+  x= gage.sf.utm, 
+  y = saunders.buffer.utm)
+mapview(saunders.15gage.utm)
 
 #25 Plot
 ggplot()+
-  geom_sf(data = nebraska.sf.utm)+
-  geom_sf(data = saunders.gage.utm)+
-  geom_sf(data = saunders.15gage.utm)
+  geom_sf(data = nebraska.sf.utm, color = "lightgrey")+
+  geom_sf(data = saunders.utm, aes(color = "Saunders County"), fill = "lightyellow", color = "black")+
+  geom_sf(data = saunders.15gage.utm, aes(color = "Gauges 15km Around Saunders County"), fill = "darkblue")+
+  geom_sf(data = saunders.gage.utm, aes(color = "Saunders Water Gauges"), fill = "blue")+
+  labs(title = "Water Gauges within Saunders County and \n15km around Saunders County")+
+  scale_color_manual(
+    values = c("Saunders County" = "lightyellow", 
+               "Gauges 15km Around Saunders County" = "darkblue", 
+               "Saunders Water Gauges" = "blue"), 
+    name = "Legend"
+  )+
+  theme_bw()+theme(legend.position = "bottom")
+
+
 
 ```
+
+
+
++
+  scale_fill_discrete(name = "Water Gauges",
+                      labels = c("Inside Saunders County", "15km Outside Saunders County"))
